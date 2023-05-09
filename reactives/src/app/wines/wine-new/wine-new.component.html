@@ -1,0 +1,38 @@
+<h2>Create Wine</h2>
+<div class="form-group">
+  <form (ngSubmit)="createWine()" [formGroup]="wineForm">
+    <div>
+      <div class="wine-name">
+        <input type="text" placeholder="Wine Name" name="name" formControlName="name"/>
+        <div *ngIf="
+            (name?.dirty || message) &&
+            name?.invalid
+          " class="msgerror">{{getErrorname()}}</div>
+      </div>
+
+      <div class="wine-price">
+        <input type="number" placeholder="Wine Price" name="price" formControlName="price" />
+        <div *ngIf="(price?.dirty || message) &&
+            price?.invalid
+          " class="msgerror">
+          {{getErrorprice()}}
+        </div>
+      </div>
+      <div class="wine-imageUrl">
+        <input type="text" placeholder="Wine Image URL" name="imageUrl" formControlName="imageUrl" />
+        <div *ngIf="
+            (imageUrl?.dirty || message) &&
+            imageUrl?.invalid
+          " class="msgerror">
+          {{getErrorimageUrl()}}
+        </div>
+      </div>
+      <div class="wine-onSale">
+        <input type="checkbox" name="onSale" formControlName="isOnSale" /><label>On Sale</label>
+      </div>
+    </div>
+    <button type="submit" >Create</button>
+  </form>
+</div>
+<div *ngIf="message" class="msgerror">{{ message }}</div>
+<div *ngIf="wine" class="msgok">{{ wine | json }}</div>

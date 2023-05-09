@@ -1,0 +1,42 @@
+<h2>Create Wine</h2>
+<div class="form-group">
+  <form (ngSubmit)="createWine(wineForm)" #wineForm="ngForm">
+    <div ngModelGroup="wine">
+      <div class="wine-name">
+        <input type="text" placeholder="Wine Name" required name="name" ngModel #wineName="ngModel" />
+        <div *ngIf="(wineName.dirty || message) && wineName.invalid " class="msgerror">
+          <div *ngIf="wineName.errors?.['required']">
+            Wine Name is required
+          </div>
+        </div>
+      </div>
+
+      <div class="wine-price">
+        <input type="number" placeholder="Wine Price" required name="price" ngModel #winePrice="ngModel" />
+        <div *ngIf="(winePrice.dirty || message) && winePrice.invalid " class="msgerror">
+          <div *ngIf="winePrice.errors?.['required']">
+            Wine Price is required
+          </div>
+        </div>
+      </div>
+      <div class="wine-imageUrl">
+        <input type="text" placeholder="Wine Image URL" required name="imageUrl" ngModel #wineImageUrl="ngModel"
+          pattern="^http(s?)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{3,})$" />
+        <div *ngIf="(wineImageUrl.dirty || message) && wineImageUrl.invalid " class="msgerror">
+          <div *ngIf="wineImageUrl.errors?.['required']">
+            Wine Image URL is required
+          </div>
+          <div *ngIf="wineImageUrl.errors?.['pattern']">
+            Wine Image URL does not seem to be a valid URL
+          </div>
+        </div>
+      </div>
+      <div class="wine-onSale">
+        <input type="checkbox" name="onSale" ngModel #onSale="ngModel" /><label>On Sale</label>
+      </div>
+    </div>
+
+    <button type="submit">Create</button>
+    <div *ngIf="message" class="msgerror">{{message}}</div>
+  </form>
+</div>

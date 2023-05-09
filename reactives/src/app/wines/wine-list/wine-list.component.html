@@ -1,0 +1,5 @@
+<div>
+    <app-wine-item *ngFor="let item of wines" [wine]="item"  (WineQuantityChange)="onWineQuantityChange($event)"></app-wine-item>
+</div>
+<hr>
+<app-wine-new></app-wine-new>

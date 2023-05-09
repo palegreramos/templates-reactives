@@ -1,0 +1,9 @@
+<div [ngClass]="{ enventa: wine.isOnSale }">
+    <figure>
+      <img [src]="wine.imageUrl" alt="Imagen de vino {{ wine.name }}" />
+      <figcaption>{{ wine.name }}</figcaption>
+    </figure>
+    <p>{{ wine.price }} &euro;</p>
+    <button (click)="dec()" *ngIf="wine.quantityInCart > 0">-</button
+    ><span>{{ wine.quantityInCart }}</span> <button (click)="inc()">+</button>
+  </div>
